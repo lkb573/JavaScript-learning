@@ -179,7 +179,7 @@ if(clickconfirm){
 
 
 //Js Object
-var obj = {};
+/*var obj = {};
 
 var num = 5;
 var str = 'hi';
@@ -214,10 +214,7 @@ console.log(typeof obj);
         }
     };
 
-    console.log(art2.add(3,5));
-
-
-
+    console.log(art2.add(3,5));*/
 
     /*var artList = [
         {
@@ -234,3 +231,78 @@ console.log(typeof obj);
             content : 'check action'
         }
     ];*/
+
+
+//jQuery
+jQuery(document).ready(function () {
+/*    var theText = $('h1').text();
+
+    console.log(theText);
+
+    $('h1').text('MARVEL');*/
+
+    /*$('li').text('Rome');*/
+
+    /*$('#destination > li:even').text('change');
+    $('.promotion')*/
+
+    /*$('#bookBigCon').children(ul).first().children('li').first().next()
+        .children('div.goods_img.bookTp').children('span').children('a').children('img')
+
+    $('#eBookTabCon1').children('div.newGoodsArea').children('ul').children('li')
+        .first().children('div.goods_info').children('p.goods_price')*/
+
+    var priceTag = $('<p>Start $ 573.99</p>');
+
+    $('button').on('click', function () {
+        /*$('#destination').children('li.promotion').remove();*/
+
+        $('#destination').children('li.vacation').append(priceTag);
+        $(this).remove();
+    });
+
+    $('#destination').on('mouseenter', 'li:nth-child(2)',function () {
+        $(this).parent('#destination').children('li:nth-child(4)').fadeOut();
+    });
+
+    $('#destination').on('mouseout', 'li:nth-child(2)',function () {
+        $(this).parent('#destination').children('li:nth-child(4)').fadeIn();
+    });
+
+    $('#nForm').on('keyup', 'input:text', function () {
+        var count = isNaN(+$(this).val()) ? 0 : +$(this).val();
+
+        /*console.log(count);*/
+
+        $('#destination').children('li:last-child').children('span').text(count * 375);
+    });
+
+
+    $('#nForm').on('click', 'input:button', function () {
+       /*alert('check');
+       console.log('check');*/
+
+       $.ajax('https://api.github.com/users/lkb573',{
+           success: function (reponse) {
+               /*$('#resultDiv').text(reponse);*/
+
+               var login = reponse.login;
+               var id = reponse.id;
+               var loc = reponse.location;
+               var cAt = reponse.created_at;
+
+               $('#destination').children(':first-child').children('h2').text(login);
+               $('#destination').children(':nth-child(2)').text(id);
+               $('#destination').children(':nth-child(3)').text(loc);
+               $('#destination').children(':nth-child(4)').text(cAt);
+           }
+       })
+       
+       
+    });
+
+
+
+
+});
+
